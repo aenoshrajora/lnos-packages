@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Help and Tips
+Comment=Help and Tips for LogicNexus WSE
+Exec=loginnexus-help-wse
+Icon=logicnexus-purple
+Type=Application
+Categories=System;

@@ -1,0 +1,21 @@
+# Maintainer: Aenosh Rajora <aenoshrajora79@gmail.com>
+
+pkgname=logicnexus-welcome
+pkgver=2.0
+pkgrel=0
+pkgdesc="Welcome app for logicnexus"
+arch=('any')
+url="https://github.com/logicnexus-os/lnos-packages"
+license=('GPL3')
+depends=('yad')
+options=(!strip !emptydirs)
+
+prepare() {
+	cp -af ../files/. "$srcdir"
+}
+
+package() {
+	(find welcome -type f -exec install -Dm 644 "{}" "$pkgdir/usr/share/archcraft/{}" \;)
+	install -Dm 755 logicnexus-welcome 			"$pkgdir"/usr/bin/logicnexus-welcome
+	install -Dm 644 logicnexus-welcome.desktop	"$pkgdir"/usr/share/applications/logicnexus-welcome.desktop
+}

@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+## Welcome / Startup application for logicnexus
+
+## Wayland
+if [[ "$XDG_SESSION_TYPE" == 'wayland' ]]; then
+    notify_cmd='notify-send'
+else
+    notify_cmd='dunstify'
+fi
+
+## Run Help
+run_help() {
+	if [[ -x `logicnexus-help` ]]; then
+		logicnexus-help
+	elif [[ -x `logicnexus-help-prime` ]]; then
+		logicnexus-help-prime
+	elif [[ -x `logicnexus-help-wse` ]]; then
+		logicnexus-help-wse
+	fi
+}
+
+DIR='/usr/share/logicnexus/welcome'
+stdbuf -oL -eL yad  --width='900' --height='570' --borders=0 --center \
+					--title='Welcome' \
+					--window-icon=logicnexus-yellow \
+					--no-buttons --no-escape \
+                    --html --uri="$DIR/welcome.html" \
+                    --print-uri 2>&1 \
+| while read -r line; do
+	case ${line##*/} in
+		run_app1)  logicnexus-help & ;;
+		run_app2)  ${notify_cmd} -u low "Launching Calamares..." && /etc/calamares/launch.sh & ;;
+		run_app3)  ${notify_cmd} -u low "Launching ABIF..." && alacritty --class 'alacritty-float,alacritty-float' --config-file /abif-master/alacritty.toml --title 'logicnexus Installer (CLI)' -e sudo /abif-master/abif & ;;
+		*)		   echo "No URI" ;;
+	esac
+done

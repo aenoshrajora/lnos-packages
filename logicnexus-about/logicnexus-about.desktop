@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=About LogicNexus
+Comment=Details regarding LogicNexus and credits
+Exec=logicnexus-about
+Icon=logicnexus-cyan
+Type=Application
+Categories=System;

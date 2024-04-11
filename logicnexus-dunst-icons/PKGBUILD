@@ -1,0 +1,18 @@
+# Maintainer: Aenosh Rajora <aenoshrajora79@gmail.com>
+
+pkgname=logicnexus-dunst-icons
+pkgver=1.0
+pkgrel=3
+pkgdesc="Icons used by dunst in logicnexus"
+arch=('any')
+url="https://github.com/logicnexus-os/lnos-packages"
+license=('GPL3')
+options=(!strip !emptydirs)
+
+prepare() {
+	cp -af ../files/. "$srcdir"
+}
+
+package() {
+	(find dunst -type f -exec install -Dm 644 "{}" "$pkgdir/usr/share/logicnexus/icons/{}" \;)
+}

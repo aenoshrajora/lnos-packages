@@ -1,0 +1,20 @@
+# Maintainer: Aenosh Rajora <aenoshrajora79@gmail.com>
+
+pkgname=logicnexus-scripts
+pkgver=1.0
+pkgrel=2
+pkgdesc="Scripts needed for Logicnexus"
+arch=('any')
+url="https://github.com/logicnexus-os/lnos-packages"
+license=('GPL3')
+options=(!strip !emptydirs)
+
+prepare() {
+	cp -af ../files/. "$srcdir"
+}
+
+package() {
+	install -Dm 755 logicnexus-reload-theme   "$pkgdir"/usr/bin/logicnexus-reload-theme
+	install -Dm 755 logicnexus-tcma           "$pkgdir"/usr/bin/logicnexus-tcma
+	# more will be added in future
+}

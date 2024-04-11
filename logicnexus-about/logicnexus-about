@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+## Copyright (C) 2020-2024 Aenosh Rajora <aenoshrajora79@gmail.com>
+##
+## About logicnexus
+
+## Get ISO Version
+if [[ -e '/version' ]]; then
+	version="v`cat /version | cut -d'.' -f1`.`cat /version | cut -d '.' -f2`"
+else
+	version='rolling'
+fi
+
+yad --title='About logicnexus' --window-icon='logicnexus-cyan' \
+	--about \
+	--pname='logicnexus' \
+	--pversion="$version" \
+	--image='distributor-logo-logicnexus' \
+	--comments="Yet another minimal linux distribution, Based on Arch Linux." \
+	--copyright="Copyright 2020-`date +'%Y'`, Aenosh Rajora <aenoshrajora79@gmail.com>" \
+	--license='GPL3' \
+	--website='https://logicnexus.io' \
+	--website-label='logicnexus.io' \
+	--authors="Aenosh Rajora <aenoshrajora79@gmail.com>"

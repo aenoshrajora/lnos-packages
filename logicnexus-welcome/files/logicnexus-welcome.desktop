@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Welcome To LogicNexus
+Comment=Startup application for LogicNexus
+Exec=logicnexus-welcome
+Icon=logicnexus-yellow
+Type=Application
+Categories=System;

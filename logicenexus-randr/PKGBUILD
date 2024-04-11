@@ -1,0 +1,23 @@
+pkgname=logicnexus-randr
+pkgver=1.0
+pkgrel=4
+pkgdesc="Rofi frontend (with xrandr backend) to manage monitors"
+arch=('any')
+url="https://github.com/logicnexus-os/lnos-packages"
+license=('GPL3')
+depends=('logicnexus-scripts')
+options=(!strip !emptydirs)
+
+source=(logicnexus-randr
+		logicnexus-randr.desktop
+		logicnexus-randr.rasi)
+
+sha256sums=('cf70f2057a59b95c387e805acd4e29246d6992fcdba18c0f40be09394ab73a6f'
+            '7ca8b423ebb9b4bdc466f525990b6b712eea0147e7e9930fccee977c004fe1e8'
+            '7f629b32ba784f5105ee8a9b7edd6817da08ce7797e77f261be8fa5f7ea7feb1')
+
+package() {
+	install -Dm 755 logicnexus-randr   			"$pkgdir"/usr/bin/logicnexus-randr
+	install -Dm 644 logicnexus-randr.desktop		"$pkgdir"/usr/share/applications/logicnexus-randr.desktop
+	install -Dm 644 logicnexus-randr.rasi   		"$pkgdir"/usr/share/archcraft/randr/rofi/logicnexus-randr.rasi
+}

@@ -1,0 +1,24 @@
+# Maintainer: Aenosh Rajora <aenoshrajora79@gmail.com>
+
+pkgname=logicnexus-help-wse
+pkgver=1.0
+pkgrel=3
+pkgdesc="Help and Tips for LogicNexus WSE"
+arch=('any')
+url="https://github.com/logicnexus-os/lnos-packages"
+license=('GPL3')
+depends=('yad')
+conflicts=('logicnexus-help' 'logicnexus-help-prime')
+options=(!strip !emptydirs)
+
+prepare() {
+	cp -af ../files/. "$srcdir"
+}
+
+package() {
+	(find help -type f -exec install -Dm 644 "{}" "$pkgdir/usr/share/logicnexus/{}" \;)
+	install -Dm 755 logicnexus-help-wse 			"$pkgdir"/usr/bin/logicnexus-help-wse
+	install -Dm 644 logicnexus-help-wse.desktop	"$pkgdir"/usr/share/applications/logicnexus-help-wse.desktop
+}
+
+
